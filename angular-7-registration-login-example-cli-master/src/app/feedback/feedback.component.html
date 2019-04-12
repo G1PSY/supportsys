@@ -1,0 +1,28 @@
+<h1>Hi {{currentUser.firstName}}!</h1>
+<h3>All feedbacks:</h3>
+<ul>
+    <li *ngFor="let feedback of feedbacks">
+        {{feedback.username}} ({{feedback.feedback}})
+    </li>
+</ul>
+
+<h2>New Feedback</h2>
+<form [formGroup]="feedbackForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+        <label for="username">Username</label>
+        <input type="text" formControlName="username" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
+        <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+            <div *ngIf="f.username.errors.required">Username is required</div>
+        </div>
+    </div>
+    <div class="form-group">
+      <label for="feedback">Feedback</label>
+      <input type="text" formControlName="feedback" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.feedback.errors }" />
+      <div *ngIf="submitted && f.feedback.errors" class="invalid-feedback">
+          <div *ngIf="f.feedback.errors.required">Feedback is required</div>
+      </div>
+  </div>
+    <div class="form-group">
+        <button [disabled]="loading" class="btn btn-primary">submit</button>
+    </div>
+</form>
