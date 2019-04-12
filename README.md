@@ -1,2 +1,0 @@
-# supportsys
-Courseproject
